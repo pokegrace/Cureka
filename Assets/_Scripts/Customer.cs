@@ -6,7 +6,7 @@ public class Customer : MonoBehaviour
 {
     private string species;
     private string customerName;
-    private Order order;
+    private Order customerOrder;
 
     public string CustomerName
     {
@@ -18,21 +18,21 @@ public class Customer : MonoBehaviour
         get { return species; }
         set { species = value; }
     }
-    public Order Order
+    public Order CustomerOrder
     {
-        get { return order; }
-        set { order = value; }
+        get { return customerOrder; }
+        set { customerOrder = value; }
     }
 
     public void CreateOrder()
     {
         if (species.Equals("Courier") || species.Equals("Lackey") || species.Equals("Adventurer"))
         {
-            Order = new Order("OTC");
+            customerOrder = new Order("OTC");
         }
         else
         {
-            Order = new Order("Prescription");
+            customerOrder = new Order("Prescription");
         }
     }
 }

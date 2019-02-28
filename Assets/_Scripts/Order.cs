@@ -6,6 +6,7 @@ public class Order : MonoBehaviour
 {
     private string orderType;
     private string orderPurpose;
+    private Potion orderPotion;
 
     public string OrderType
     {
@@ -14,11 +15,11 @@ public class Order : MonoBehaviour
     public string OrderPurpose
     {
         get { return orderPurpose; }
-        set { orderPurpose = value; }
     }
-    
-    Potion potion;
-
+    public Potion OrderPotion
+    {
+        get { return orderPotion; }
+    }
     public string[] orderPurposeList = new string[]
     {
         "Delivery",
@@ -34,6 +35,7 @@ public class Order : MonoBehaviour
         orderType = sOrderType;
 
         SetOrderPurpose();
+        SetOrderPotion();
     }
 
     private void SetOrderPurpose()
@@ -42,6 +44,15 @@ public class Order : MonoBehaviour
         {
             orderPurpose = orderPurposeList[(int)Random.Range(0, orderPurposeList.Length)];
             Debug.Log("Order purpose: " + orderPurpose);
+        }
+    }
+
+    private void SetOrderPotion()
+    {
+        if(orderType.Equals("OTC"))
+        {
+            orderPotion = new HealthPotion();
+            Debug.Log("Potion: " + orderPotion.PotionName);
         }
     }
 }

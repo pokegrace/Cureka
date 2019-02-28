@@ -32,14 +32,6 @@ public class CustomerSpawner : MonoBehaviour
         StartCoroutine("Spawn");
     }
 
-    private void Update()
-    {
-        if(!customerSpawned)
-        {
-            StartCoroutine("Spawn");
-        }
-    }
-
     IEnumerator Spawn()
     {
         Debug.Log("Coroutine started");
@@ -47,8 +39,6 @@ public class CustomerSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(randTime);
         CreateCustomer();
-
-        yield break;
     }
 
     private void CreateCustomer()
@@ -62,9 +52,9 @@ public class CustomerSpawner : MonoBehaviour
 
         Debug.Log("Name: " + customer.CustomerName);
         Debug.Log("Species: " + customer.Species);
-        Debug.Log("Order: " + customer.Order.OrderType);
 
         customer.CreateOrder();
+        Debug.Log("Order: " + customer.CustomerOrder.OrderType);
 
         customerSpawned = true;
     }
