@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    private string species;
+    private string classType;
     private string customerName;
     private Order customerOrder;
 
@@ -13,10 +13,10 @@ public class Customer : MonoBehaviour
         get { return customerName; }
         set { customerName = value; }
     }
-    public string Species
+    public string ClassType
     {
-        get { return species; }
-        set { species = value; }
+        get { return classType; }
+        set { classType = value; }
     }
     public Order CustomerOrder
     {
@@ -26,7 +26,7 @@ public class Customer : MonoBehaviour
 
     public void CreateOrder()
     {
-        if (species.Equals("Courier") || species.Equals("Lackey") || species.Equals("Adventurer"))
+        if (classType.Equals("Courier") || classType.Equals("Lackey") || classType.Equals("Adventurer"))
         {
             customerOrder = new Order("OTC");
         }

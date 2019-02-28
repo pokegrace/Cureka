@@ -48,9 +48,14 @@ public class Order : MonoBehaviour
         SetOrderPotion();
     }
 
+    // for OTC, purpose is personal. for presc, purpose is random.
     private void SetOrderPurpose()
     {
-        if(!orderType.Equals("OTC"))
+        if(orderType.Equals("OTC"))
+        {
+            orderPurpose = "Personal";
+        }
+        else
         {
             orderPurpose = orderPurposeList[(int)Random.Range(0, orderPurposeList.Length)];
             Debug.Log("Order purpose: " + orderPurpose);
