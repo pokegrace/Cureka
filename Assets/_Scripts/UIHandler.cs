@@ -17,6 +17,7 @@ public class UIHandler : MonoBehaviour
     private Text orderPurpose;
     private Text price;
 
+    // finding all references
     private void Start()
     {
         orderPanel = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(1).gameObject;
@@ -32,6 +33,7 @@ public class UIHandler : MonoBehaviour
         price = orderPanel.transform.GetChild(6).GetComponent<Text>();
     }
 
+    // button onclick listener added in Start() and CreateCustomer() in CustomerSpawner.cs
     public void SetPanelActive()
     {
         customer = GameObject.Find("Customer").GetComponent<Customer>();
@@ -49,6 +51,7 @@ public class UIHandler : MonoBehaviour
         }
     }
 
+    // adding text to all fields
     private void SetPanelText()
     {
         customerName.text = "Name: " + customer.CustomerName;

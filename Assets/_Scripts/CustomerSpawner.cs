@@ -8,26 +8,6 @@ public class CustomerSpawner : MonoBehaviour
     [SerializeField] private GameObject customerClone;
     private bool customerSpawned = false;
 
-    private string[] classList = new string[]
-    {
-        "Courier",
-        "Lackey",
-        "Adventurer",
-        "Alchemist",
-        "Sorcerer",
-        "Herbalist",
-        "Shaman",
-        "Wizard"
-    };
-    private string[] nameList = new string[]
-    {
-        "Tim",
-        "Bill",
-        "Nelly",
-        "Mina",
-        "Eldritch Mystifier"
-    };
-
     private void Start()
     {
         StartCoroutine("Spawn");
@@ -60,8 +40,8 @@ public class CustomerSpawner : MonoBehaviour
         orderFormButton.onClick.AddListener(() => uiHandler.SetPanelActive());
 
         // setting customer's fields
-        customer.CustomerName = nameList[(int)Random.Range(0, nameList.Length)];
-        customer.ClassType = classList[(int)Random.Range(0, classList.Length)];
+        customer.CustomerName = customer.nameList[(int)Random.Range(0, customer.nameList.Length)];
+        customer.ClassType = customer.classList[(int)Random.Range(0, customer.classList.Length)];
 
         customer.CreateOrder();
 

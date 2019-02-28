@@ -8,6 +8,7 @@ public class Order : MonoBehaviour
     private string orderPurpose;
     private Potion orderPotion;
 
+    // getters and setters
     public string OrderType
     {
         get { return orderType; }
@@ -20,6 +21,8 @@ public class Order : MonoBehaviour
     {
         get { return orderPotion; }
     }
+
+    // array of order purposes
     private string[] orderPurposeList = new string[]
     {
         "Delivery",
@@ -28,6 +31,8 @@ public class Order : MonoBehaviour
         "Apothecary",
         "Wizardry"
     };
+
+    // arrays of potions
     private Potion[] OTCPotions = new Potion[]
     {
         new HealthPotion(),
@@ -52,26 +57,17 @@ public class Order : MonoBehaviour
     private void SetOrderPurpose()
     {
         if(orderType.Equals("OTC"))
-        {
             orderPurpose = "Personal";
-        }
         else
-        {
             orderPurpose = orderPurposeList[(int)Random.Range(0, orderPurposeList.Length)];
-            Debug.Log("Order purpose: " + orderPurpose);
-        }
     }
 
+    // create random potion for either OTC or presc order
     private void SetOrderPotion()
     {
         if(orderType.Equals("OTC"))
-        {
             orderPotion = OTCPotions[(int)Random.Range(0, OTCPotions.Length)];
-        }
         else
-        {
             orderPotion = PrescriptionPotions[(int)Random.Range(0, PrescriptionPotions.Length)];
-        }
-        Debug.Log("Potion: " + orderPotion.PotionName);
     }
 }
