@@ -20,13 +20,23 @@ public class Order : MonoBehaviour
     {
         get { return orderPotion; }
     }
-    public string[] orderPurposeList = new string[]
+    private string[] orderPurposeList = new string[]
     {
         "Delivery",
         "Personal",
         "Alchemy",
         "Apothecary",
         "Wizardry"
+    };
+    private Potion[] OTCPotions = new Potion[]
+    {
+        new HealthPotion(),
+        new GreaterHealthPotion()
+    };
+    private Potion[] PrescriptionPotions = new Potion[]
+    {
+        new PolymorphicPotion(),
+        new LemonWater()
     };
 
     // Constructor
@@ -51,8 +61,12 @@ public class Order : MonoBehaviour
     {
         if(orderType.Equals("OTC"))
         {
-            orderPotion = new HealthPotion();
-            Debug.Log("Potion: " + orderPotion.PotionName);
+            orderPotion = OTCPotions[(int)Random.Range(0, OTCPotions.Length)];
         }
+        else
+        {
+            orderPotion = PrescriptionPotions[(int)Random.Range(0, PrescriptionPotions.Length)];
+        }
+        Debug.Log("Potion: " + orderPotion.PotionName);
     }
 }
