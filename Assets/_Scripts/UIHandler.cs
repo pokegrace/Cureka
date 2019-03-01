@@ -20,7 +20,7 @@ public class UIHandler : MonoBehaviour
     // finding all references
     private void Start()
     {
-        orderPanel = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(1).gameObject;
+        orderPanel = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(5).gameObject;
 
         closeButton = orderPanel.transform.GetChild(7).GetComponent<Button>();
         closeButton.onClick.AddListener(() => SetPanelActive());

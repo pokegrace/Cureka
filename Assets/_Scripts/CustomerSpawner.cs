@@ -27,28 +27,32 @@ public class CustomerSpawner : MonoBehaviour
 
     public void CreateCustomer()
     {
-        c = Instantiate(customerClone);
-        c.name = "Customer";
+        // only create customer if there isn't one already
+        if(c == null)
+        {
+            c = Instantiate(customerClone);
+            c.name = "Customer";
 
-        // finding all components from customer
-        Customer customer = c.GetComponent<Customer>();
-        UIHandler uiHandler = customer.GetComponent<UIHandler>();
+            // finding all components from customer
+            Customer customer = c.GetComponent<Customer>();
+            UIHandler uiHandler = customer.GetComponent<UIHandler>();
 
-        // finding button, childing it to the main canvas
-        orderFormButton = customer.transform.GetChild(0).GetChild(0).GetComponent<Button>();
-        orderFormButton.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
-        orderFormButton.transform.SetSiblingIndex(0);
+            // finding button, childing it to the main canvas
+            orderFormButton = customer.transform.GetChild(0).GetChild(0).GetComponent<Button>();
+            orderFormButton.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
+            orderFormButton.transform.SetSiblingIndex(0);
 
-        // adding onClick listener to customer's order button
-        orderFormButton.onClick.AddListener(() => uiHandler.SetPanelActive());
+            // adding onClick listener to customer's order button
+            orderFormButton.onClick.AddListener(() => uiHandler.SetPanelActive());
 
-        // setting customer's fields
-        customer.CustomerName = customer.nameList[(int)Random.Range(0, customer.nameList.Length)];
-        customer.ClassType = customer.classList[(int)Random.Range(0, customer.classList.Length)];
+            // setting customer's fields
+            customer.CustomerName = customer.nameList[(int)Random.Range(0, customer.nameList.Length)];
+            customer.ClassType = customer.classList[(int)Random.Range(0, customer.classList.Length)];
 
-        customer.CreateOrder();
+            customer.CreateOrder();
 
-        customerSpawned = true;
+            customerSpawned = true;
+        }
     }
 
     public void DestroyCustomer()
