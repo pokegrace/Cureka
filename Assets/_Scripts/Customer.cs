@@ -49,13 +49,6 @@ public class Customer : MonoBehaviour
     // create a random order depending on customer class type
     public void CreateOrder()
     {
-        if (classType.Equals("Courier") || classType.Equals("Lackey") || classType.Equals("Adventurer"))
-        {
-            customerOrder = new Order("OTC");
-        }
-        else
-        {
-            customerOrder = new Order("Prescription");
-        }
+        customerOrder = new Order(this.ClassType);
     }
 }

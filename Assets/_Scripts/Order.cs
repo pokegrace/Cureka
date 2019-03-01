@@ -22,16 +22,6 @@ public class Order : MonoBehaviour
         get { return orderPotion; }
     }
 
-    // array of order purposes
-    private string[] orderPurposeList = new string[]
-    {
-        "Delivery",
-        "Personal",
-        "Alchemy",
-        "Apothecary",
-        "Wizardry"
-    };
-
     // arrays of potions
     private Potion[] OTCPotions = new Potion[]
     {
@@ -45,21 +35,62 @@ public class Order : MonoBehaviour
     };
 
     // Constructor
-    public Order(string sOrderType)
+    public Order(string classType)
     {
-        orderType = sOrderType;
+        // randomizing order type
+        int r = (int)Random.Range(0, 2);
+        if (r == 0)
+            orderType = "OTC";
+        else
+            orderType = "Prescription";
 
-        SetOrderPurpose();
+        SetOrderPurpose(classType);
         SetOrderPotion();
     }
 
-    // for OTC, purpose is personal. for presc, purpose is random.
-    private void SetOrderPurpose()
+    private void SetOrderPurpose(string classType)
     {
-        if(orderType.Equals("OTC"))
-            orderPurpose = "Personal";
+        if (classType.Equals("Lackey") || classType.Equals("Adventurer"))
+        {
+            if (orderType.Equals("OTC"))
+                orderPurpose = "Personal";
+            else
+            {
+                int r = (int)Random.Range(0, 2);
+                if (r == 0)
+                    orderPurpose = "Personal";
+                else
+                    orderPurpose = "Delivery";
+            }
+        }
+        else if(classType.Equals("Alchemist") || classType.Equals("Herbalist") || classType.Equals("Shaman"))
+        {
+            if (orderType.Equals("OTC"))
+                orderPurpose = "Personal";
+            else
+            {
+                int r = (int)Random.Range(0, 3);
+                if (r == 0)
+                    orderPurpose = "Alchemy";
+                else if (r == 1)
+                    orderPurpose = "Apothecary";
+                else
+                    orderPurpose = "Personal";
+            }
+        }
         else
-            orderPurpose = orderPurposeList[(int)Random.Range(0, orderPurposeList.Length)];
+        {
+            if (orderType.Equals("OTC"))
+                orderPurpose = "Personal";
+            else
+            {
+                int r = (int)Random.Range(0, 2);
+                if (r == 0)
+                    orderPurpose = "Personal";
+                else
+                    orderPurpose = "Wizardry";
+            }
+        }
     }
 
     // create random potion for either OTC or presc order

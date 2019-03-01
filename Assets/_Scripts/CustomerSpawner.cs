@@ -7,12 +7,15 @@ public class CustomerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject customerClone;
     private bool customerSpawned = false;
+    private GameObject c;
+    private Button orderFormButton;
 
     private void Start()
     {
-        StartCoroutine("Spawn");
+        //StartCoroutine("Spawn");
     }
 
+    /*
     IEnumerator Spawn()
     {
         Debug.Log("Coroutine started");
@@ -20,11 +23,11 @@ public class CustomerSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(randTime);
         CreateCustomer();
-    }
+    }*/
 
-    private void CreateCustomer()
+    public void CreateCustomer()
     {
-        GameObject c = Instantiate(customerClone);
+        c = Instantiate(customerClone);
         c.name = "Customer";
 
         // finding all components from customer
@@ -32,7 +35,7 @@ public class CustomerSpawner : MonoBehaviour
         UIHandler uiHandler = customer.GetComponent<UIHandler>();
 
         // finding button, childing it to the main canvas
-        Button orderFormButton = customer.transform.GetChild(0).GetChild(0).GetComponent<Button>();
+        orderFormButton = customer.transform.GetChild(0).GetChild(0).GetComponent<Button>();
         orderFormButton.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
         orderFormButton.transform.SetSiblingIndex(0);
 
@@ -46,5 +49,11 @@ public class CustomerSpawner : MonoBehaviour
         customer.CreateOrder();
 
         customerSpawned = true;
+    }
+
+    public void DestroyCustomer()
+    {
+        Destroy(c.gameObject);
+        Destroy(orderFormButton.gameObject);
     }
 }
