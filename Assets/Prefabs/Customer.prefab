@@ -114,6 +114,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2816a1c8ecefcb14b80b66d42901b304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  classList:
+  - Courier
+  - Lackey
+  - Adventurer
+  - Alchemist
+  - Sorcerer
+  - Herbalist
+  - Shaman
+  - Wizard
+  nameList:
+  - Tim
+  - Bill
+  - Nelly
+  - Mina
+  - Eldritch Mystifier
 --- !u!114 &7925547692872612488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,13 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747280857ca40c644be1a0d5f397c695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orderPanel: {fileID: 3145958486327000386, guid: be0ad09dbf431fa49b6c29de784800e3,
-    type: 3}
-  customerName: {fileID: 0}
-  orderType: {fileID: 0}
-  potionName: {fileID: 0}
-  orderPurpose: {fileID: 0}
-  price: {fileID: 0}
 --- !u!1 &7925547694063995981
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,8 +208,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300962, guid: abab04dbf9df06c49b43d1ce78b9d844, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -317,11 +325,11 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 125140b7247ef174d95883117b64c281, type: 3}
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
