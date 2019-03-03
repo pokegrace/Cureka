@@ -50,6 +50,7 @@ public class Order : MonoBehaviour
 
     private void SetOrderPurpose(string classType)
     {
+        #region lackey_adventurer
         if (classType.Equals("Lackey") || classType.Equals("Adventurer"))
         {
             if (orderType.Equals("OTC"))
@@ -63,7 +64,9 @@ public class Order : MonoBehaviour
                     orderPurpose = "Delivery";
             }
         }
-        else if(classType.Equals("Alchemist") || classType.Equals("Herbalist") || classType.Equals("Shaman"))
+        #endregion
+        #region alchemist_herbalist_shaman
+        else if (classType.Equals("Alchemist") || classType.Equals("Herbalist") || classType.Equals("Shaman"))
         {
             if (orderType.Equals("OTC"))
                 orderPurpose = "Personal";
@@ -78,6 +81,8 @@ public class Order : MonoBehaviour
                     orderPurpose = "Personal";
             }
         }
+        #endregion
+        #region wizard
         else
         {
             if (orderType.Equals("OTC"))
@@ -91,6 +96,7 @@ public class Order : MonoBehaviour
                     orderPurpose = "Wizardry";
             }
         }
+        #endregion
     }
 
     // create random potion for either OTC or presc order
