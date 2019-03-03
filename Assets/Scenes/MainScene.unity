@@ -192,7 +192,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 537187925}
-        m_MethodName: OpenClosePanel
+        m_MethodName: OpenCloseOTC
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -648,7 +648,6 @@ GameObject:
   - component: {fileID: 537187923}
   - component: {fileID: 537187922}
   - component: {fileID: 537187925}
-  - component: {fileID: 537187926}
   - component: {fileID: 537187927}
   m_Layer: 0
   m_Name: EventSystem
@@ -718,21 +717,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otcPanel: {fileID: 251313209}
+  prescPanel: {fileID: 1508972663}
   healthPotion: {fileID: 260422740}
   gHealthPotion: {fileID: 1500805096}
---- !u!114 &537187926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537187921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df5e536fec1e4024c8396f0a56945ce6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prescPanel: {fileID: 1508972663}
+  polymorphicPotion: {fileID: 1041731189}
+  lemonWater: {fileID: 2123542835}
 --- !u!114 &537187927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1284,7 +1273,7 @@ GameObject:
   - component: {fileID: 1041731190}
   - component: {fileID: 1041731189}
   m_Layer: 0
-  m_Name: potion1
+  m_Name: polymorphic potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1654,8 +1643,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 537187926}
-        m_MethodName: OpenClosePanel
+      - m_Target: {fileID: 537187925}
+        m_MethodName: OpenClosePresc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2813,7 +2802,7 @@ GameObject:
   - component: {fileID: 2123542836}
   - component: {fileID: 2123542835}
   m_Layer: 0
-  m_Name: potion2
+  m_Name: lemon water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
