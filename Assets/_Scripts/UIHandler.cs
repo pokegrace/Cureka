@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
 {
-    private bool panelActive = false;
+    public bool panelActive = false;
     private Customer customer;
 
     private GameObject orderPanel;

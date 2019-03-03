@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class CustomerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject customerClone;
+
     private bool customerSpawned = false;
     private GameObject c;
     private Button orderFormButton;
+    private UIHandler uiHandler;
 
     private void Start()
     {
@@ -35,7 +37,7 @@ public class CustomerSpawner : MonoBehaviour
 
             // finding all components from customer
             Customer customer = c.GetComponent<Customer>();
-            UIHandler uiHandler = customer.GetComponent<UIHandler>();
+            uiHandler = customer.GetComponent<UIHandler>();
 
             // finding button, childing it to the main canvas
             orderFormButton = customer.transform.GetChild(0).GetChild(0).GetComponent<Button>();
@@ -59,5 +61,8 @@ public class CustomerSpawner : MonoBehaviour
     {
         Destroy(c.gameObject);
         Destroy(orderFormButton.gameObject);
+        // close panel if it's open
+        if (uiHandler.panelActive)
+            uiHandler.SetPanelActive();
     }
 }

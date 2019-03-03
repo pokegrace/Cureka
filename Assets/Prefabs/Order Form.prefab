@@ -310,18 +310,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 125140b7247ef174d95883117b64c281, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 25
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Potion
-
-'
+  m_Text: Potion
 --- !u!1 &3145958486327000386
 GameObject:
   m_ObjectHideFlags: 0
