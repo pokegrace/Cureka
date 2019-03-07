@@ -22,7 +22,7 @@ public class OrderPanelHandler : MonoBehaviour
     // finding all references
     private void Start()
     {
-        orderPanel = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(9).gameObject;
+        orderPanel = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(1).gameObject;
 
         closeButton = orderPanel.transform.GetChild(7).GetComponent<Button>();
         closeButton.onClick.AddListener(() => OpenClosePanel());

@@ -85,9 +85,12 @@ public class PotionHandler : MonoBehaviour
 
             OpenCloseOTC();
         }
+        // if player makes a mistake, increment counter and destroy customer
         else
         {
-            Debug.Log("Wrong potion!");
+            player.mistakeAmount += 1;
+            OpenCloseOTC();
+            customerSpawner.DestroyCustomer();
         }
     }
 
@@ -106,7 +109,9 @@ public class PotionHandler : MonoBehaviour
         }
         else
         {
-            Debug.Log("Wrong potion!");
+            player.mistakeAmount += 1;
+            OpenClosePresc();
+            customerSpawner.DestroyCustomer();
         }
     }
 }
