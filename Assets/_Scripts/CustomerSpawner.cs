@@ -14,18 +14,20 @@ public class CustomerSpawner : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine("Spawn");
+        StartCoroutine("Spawn");
     }
 
-    /*
     IEnumerator Spawn()
     {
-        Debug.Log("Coroutine started");
-        float randTime = Random.Range(1.0f, 6.0f);
-
-        yield return new WaitForSeconds(randTime);
-        CreateCustomer();
-    }*/
+        float randTime = Random.Range(1.0f, 8.0f);
+        
+        if(!customerSpawned)
+        {
+            yield return new WaitForSeconds(randTime);
+            CreateCustomer();
+        }
+            
+    }
 
     public void CreateCustomer()
     {
@@ -64,5 +66,8 @@ public class CustomerSpawner : MonoBehaviour
         // close panel if it's open
         if (orderPanelHandler.panelActive)
             orderPanelHandler.OpenClosePanel();
+
+        customerSpawned = false;
+        StartCoroutine("Spawn");
     }
 }
