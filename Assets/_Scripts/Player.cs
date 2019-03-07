@@ -9,8 +9,19 @@ public class Player : MonoBehaviour
     [SerializeField] private Text goldValue;
     [SerializeField] private Text mistakeValue;
 
-    public int goldAmount;
-    public int mistakeAmount;
+    private int goldAmount;
+    private int mistakeAmount;
+
+    public int GoldAmount
+    {
+        get { return goldAmount; }
+        set { goldAmount = value; }
+    }
+    public int MistakeAmount
+    {
+        get { return mistakeAmount; }
+        set { mistakeAmount = value; }
+    }
 
     private void Update()
     {

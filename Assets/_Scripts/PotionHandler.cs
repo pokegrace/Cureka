@@ -80,7 +80,7 @@ public class PotionHandler : MonoBehaviour
         if (potionName.Equals(customer.CustomerOrder.OrderPotion.PotionName))
         {
             // add potion amount to player's gold amount and destroy customer
-            player.goldAmount += customer.CustomerOrder.OrderPotion.price;
+            player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
             customerSpawner.DestroyCustomer();
 
             OpenCloseOTC();
@@ -88,7 +88,7 @@ public class PotionHandler : MonoBehaviour
         // if player makes a mistake, increment counter and destroy customer
         else
         {
-            player.mistakeAmount += 1;
+            player.MistakeAmount += 1;
             OpenCloseOTC();
             customerSpawner.DestroyCustomer();
         }
@@ -102,14 +102,14 @@ public class PotionHandler : MonoBehaviour
         if (potionName.Equals(customer.CustomerOrder.OrderPotion.PotionName))
         {
             // add potion amount to player's gold amount and destroy customer
-            player.goldAmount += customer.CustomerOrder.OrderPotion.price;
+            player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
             customerSpawner.DestroyCustomer();
 
             OpenClosePresc();
         }
         else
         {
-            player.mistakeAmount += 1;
+            player.MistakeAmount += 1;
             OpenClosePresc();
             customerSpawner.DestroyCustomer();
         }
