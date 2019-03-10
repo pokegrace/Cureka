@@ -57,6 +57,18 @@ public class CustomerSpawner : MonoBehaviour
 
             customer.CreateOrder();
 
+            // deciding if customer has special form or not
+            if(customer.CustomerOrder.OrderType.Equals("Prescription"))
+            {
+                int r = Random.Range(0, 2);
+                if (r == 0)
+                    customer.hasSpecialForm = true;
+                else
+                    customer.hasSpecialForm = false;
+
+                Debug.Log("has special form: " + customer.hasSpecialForm);
+            }
+
             customerSpawned = true;
         }
     }

@@ -22,8 +22,8 @@ public class SpecialFormsHandler : MonoBehaviour
     {
         customer = GameObject.Find("Customer").GetComponent<Customer>();
 
-        // if the customer's order is a prescription
-        if (customer.CustomerOrder.OrderPurpose.Equals("Personal"))
+        // if the customer's order is a prescription and they have special form
+        if (customer.CustomerOrder.OrderPurpose.Equals("Personal") && customer.hasSpecialForm)
         {
             // get customer's special order form button and set it as a child to canvas
             specialFormButton = customer.transform.GetChild(0).GetComponent<Button>();

@@ -8,6 +8,8 @@ public class Customer : MonoBehaviour
     private string customerName;
     private Order customerOrder;
 
+    public bool hasSpecialForm;
+
     // getters and setters
     public string CustomerName
     {
