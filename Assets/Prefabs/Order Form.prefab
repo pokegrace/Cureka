@@ -689,7 +689,7 @@ GameObject:
   - component: {fileID: 4667503783274651958}
   - component: {fileID: 763025696430419809}
   m_Layer: 0
-  m_Name: text_species
+  m_Name: text_class
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -755,4 +755,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Species
+  m_Text: Class

@@ -11,15 +11,17 @@ public class CustomerSpawner : MonoBehaviour
     private GameObject c;
     private Button orderFormButton;
     private OrderPanelHandler orderPanelHandler;
+    private SpecialFormsHandler specialFormsHandler;
 
     private void Start()
     {
         StartCoroutine("Spawn");
+        specialFormsHandler = GameObject.Find("EventSystem").GetComponent<SpecialFormsHandler>();
     }
 
     IEnumerator Spawn()
     {
-        float randTime = Random.Range(1.0f, 8.0f);
+        float randTime = Random.Range(1.0f, 6.0f);
         
         if(!customerSpawned)
         {
@@ -42,16 +44,16 @@ public class CustomerSpawner : MonoBehaviour
             orderPanelHandler = customer.GetComponent<OrderPanelHandler>();
 
             // finding button, childing it to the main canvas
-            orderFormButton = customer.transform.GetChild(0).GetChild(0).GetComponent<Button>();
+            orderFormButton = customer.transform.GetChild(0).GetComponent<Button>();
             orderFormButton.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
-            orderFormButton.transform.SetSiblingIndex(0);
+            orderFormButton.transform.SetSiblingIndex(2);
 
             // adding onClick listener to customer's order button
             orderFormButton.onClick.AddListener(() => orderPanelHandler.OpenClosePanel());
 
             // setting customer's fields
-            customer.CustomerName = customer.nameList[(int)Random.Range(0, customer.nameList.Length)];
-            customer.ClassType = customer.classList[(int)Random.Range(0, customer.classList.Length)];
+            customer.CustomerName = customer.nameList[(int)Random.Range(0, customer.nameList.Count - 1)];
+            customer.ClassType = customer.classList[(int)Random.Range(0, customer.classList.Count - 1)];
 
             customer.CreateOrder();
 
@@ -61,11 +63,16 @@ public class CustomerSpawner : MonoBehaviour
 
     public void DestroyCustomer()
     {
+        // destroy customer and their forms
         Destroy(c.gameObject);
         Destroy(orderFormButton.gameObject);
+        Destroy(GameObject.Find("button_specialform").gameObject);
+
         // close panel if it's open
         if (orderPanelHandler.panelActive)
             orderPanelHandler.OpenClosePanel();
+        if (specialFormsHandler.prescPanelOpen)
+            specialFormsHandler.OpenClosePanel();
 
         customerSpawned = false;
         StartCoroutine("Spawn");

@@ -22,7 +22,7 @@ public class OrderPanelHandler : MonoBehaviour
     // finding all references
     private void Start()
     {
-        orderPanel = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(1).gameObject;
+        orderPanel = GameObject.FindGameObjectWithTag("Canvas").transform.Find("Order Form").gameObject;
 
         closeButton = orderPanel.transform.GetChild(7).GetComponent<Button>();
         closeButton.onClick.AddListener(() => OpenClosePanel());
@@ -42,6 +42,9 @@ public class OrderPanelHandler : MonoBehaviour
 
         if (!panelActive)
         {
+            // bring panel to top layer
+            orderPanel.transform.SetAsLastSibling();
+
             orderPanel.SetActive(true);
             SetPanelText();
             panelActive = true;

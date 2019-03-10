@@ -23,12 +23,12 @@ public class Order : MonoBehaviour
     }
 
     // arrays of potions
-    private Potion[] OTCPotions = new Potion[]
+    public Potion[] OTCPotions = new Potion[]
     {
         new HealthPotion(),
         new GreaterHealthPotion()
     };
-    private Potion[] PrescriptionPotions = new Potion[]
+    public Potion[] PrescriptionPotions = new Potion[]
     {
         new PolymorphicPotion(),
         new LemonWater()
