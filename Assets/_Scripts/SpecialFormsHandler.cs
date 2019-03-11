@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class SpecialFormsHandler : MonoBehaviour
 {
     [SerializeField] private GameObject prescPanel;
+    [SerializeField] private GameObject permitPanel;
     [SerializeField] private Button askPrescButton;
 
-    public bool prescPanelOpen;
+    public bool panelOpen;
     public bool orderCorrect = false;
 
     private Customer customer;
@@ -29,15 +30,31 @@ public class SpecialFormsHandler : MonoBehaviour
         if (customer.CustomerOrder.OrderType.Equals("Prescription") && customer.hasSpecialForm)
         {
             // get customer's special order form button and set it as a child to canvas
-            specialFormButton = customer.transform.GetChild(0).GetComponent<Button>();
-            specialFormButton.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
-            specialFormButton.transform.SetSiblingIndex(3);
+            if(customer.transform.childCount > 0)
+            {
+                specialFormButton = customer.transform.GetChild(0).GetComponent<Button>();
+                specialFormButton.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
+                specialFormButton.transform.SetSiblingIndex(3);
+            }
 
-            // adding onclick listener to the prescription order form
-            if(customer.CustomerOrder.OrderPurpose.Equals("Personal"))
+            // deciding if the prescription will be correct or not
+            int r = (int)Random.Range(0, 2);
+            if (r == 0)
+            {
+                orderCorrect = true;
+            }
+            else
+            {
+                orderCorrect = false;
+                player.denyCorrect = true;
+            }
+            Debug.Log("order correct: " + orderCorrect);
+
+            // adding onclick listeners to special form icon
+            if (customer.CustomerOrder.OrderPurpose.Equals("Personal"))
                 specialFormButton.onClick.AddListener(() => DisplayPrescription());
             else if(customer.CustomerOrder.OrderPurpose.Equals("Delivery"))
-                specialFormButton.onClick.AddListener(() => DisplayPrescription());
+                specialFormButton.onClick.AddListener(() => DisplayPermit());
         }
         else if(customer.CustomerOrder.OrderType.Equals("Prescription") && customer.hasSpecialForm == false)
         {
@@ -48,46 +65,47 @@ public class SpecialFormsHandler : MonoBehaviour
 
     private void DisplayPrescription()
     {
-        // deciding if the prescription will be correct or not
-        int r = (int)Random.Range(0, 2);
-        if (r == 0)
-        {
-            orderCorrect = true;
-        } 
-        else
-        {
-            orderCorrect = false;
-            player.denyCorrect = true;
-        }
-
-        SetPanelText(prescPanel, orderCorrect);
-        OpenClosePanel();
+        SetPanelText(prescPanel);
+        OpenClosePanel(prescPanel);
     }
 
-    public void OpenClosePanel()
+    private void DisplayPermit()
     {
-        if (!prescPanelOpen)
+        SetPanelText(permitPanel);
+        OpenClosePanel(permitPanel);
+    }
+
+    public void OpenClosePanel(GameObject panel)
+    {
+        if (!panelOpen)
         {
             // bring panel to top layer
-            prescPanel.transform.SetAsLastSibling();
+            panel.transform.SetAsLastSibling();
 
-            prescPanel.SetActive(true);
-            prescPanelOpen = true;
+            panel.SetActive(true);
+            panelOpen = true;
         }
         else
         {
-            prescPanel.SetActive(false);
-            prescPanelOpen = false;
+            panel.SetActive(false);
+            panelOpen = false;
         }
     }
 
     // sets the special order text to either correct or incorrect order
     // TODO: remove possibility of getting duplicate name if !orderCorrect
-    private void SetPanelText(GameObject panel, bool orderCorrect)
+    private void SetPanelText(GameObject panel)
     {
         foreach(Transform child in panel.transform)
         {
-            if (child.gameObject.name.Equals("text_customername"))
+            if(child.gameObject.name.Equals("text_title"))
+            {
+                if(customer.CustomerOrder.OrderPurpose.Equals("Delivery"))
+                {
+                    child.gameObject.GetComponent<Text>().text = "Delivery Permit";
+                }
+            }
+            else if (child.gameObject.name.Equals("text_customername"))
             {
                 if (orderCorrect)
                     child.gameObject.GetComponent<Text>().text = "Name: " + customer.CustomerName;
@@ -106,13 +124,23 @@ public class SpecialFormsHandler : MonoBehaviour
                     child.gameObject.GetComponent<Text>().text = "Potion: " +
                         customer.CustomerOrder.PrescriptionPotions[Random.Range(0, customer.CustomerOrder.PrescriptionPotions.Length)].PotionName;
             }
-            else if(child.gameObject.name.Equals("text_purpose"))
+            else if (child.gameObject.name.Equals("text_purpose"))
             {
                 child.gameObject.GetComponent<Text>().text = "Purpose: " + customer.CustomerOrder.OrderPurpose;
             }
-            else if(child.gameObject.name.Equals("text_price"))
+            else if (child.gameObject.name.Equals("text_price"))
             {
                 panel.transform.Find("text_price").GetComponent<Text>().text = "Price: " + customer.CustomerOrder.OrderPotion.price;
+            }
+            else if(child.gameObject.name.Equals("image_seal"))
+            {
+                if(customer.CustomerOrder.OrderPurpose.Equals("Delivery"))
+                {
+                    if (orderCorrect)
+                        child.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("broom");
+                    else
+                        child.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("broomIncorrect");
+                }
             }
         }  
     }

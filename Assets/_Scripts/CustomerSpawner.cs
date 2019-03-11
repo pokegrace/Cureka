@@ -64,8 +64,8 @@ public class CustomerSpawner : MonoBehaviour
             // deciding if customer has special form or not
             if(customer.CustomerOrder.OrderType.Equals("Prescription"))
             {
-                int r = Random.Range(0, 2);
-                if (r == 0)
+                int r = Random.Range(0, 4);
+                if (r <= 2)
                     customer.hasSpecialForm = true;
                 else
                     customer.hasSpecialForm = false;
@@ -87,8 +87,13 @@ public class CustomerSpawner : MonoBehaviour
         // close panel if it's open
         if (orderPanelHandler.panelActive)
             orderPanelHandler.OpenClosePanel();
-        if (specialFormsHandler.prescPanelOpen)
-            specialFormsHandler.OpenClosePanel();
+        if (specialFormsHandler.panelOpen)
+        {
+            if (GameObject.Find("Prescription"))
+                specialFormsHandler.OpenClosePanel(GameObject.Find("Prescription"));
+            else if(GameObject.Find("Permit"))
+                specialFormsHandler.OpenClosePanel(GameObject.Find("Permit"));
+        }
 
         // reset denyCorrect to false
         player.denyCorrect = false;
