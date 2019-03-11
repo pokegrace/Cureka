@@ -34,7 +34,10 @@ public class SpecialFormsHandler : MonoBehaviour
             specialFormButton.transform.SetSiblingIndex(3);
 
             // adding onclick listener to the prescription order form
-            specialFormButton.onClick.AddListener(() => DisplayPrescription(customer));
+            if(customer.CustomerOrder.OrderPurpose.Equals("Personal"))
+                specialFormButton.onClick.AddListener(() => DisplayPrescription());
+            else if(customer.CustomerOrder.OrderPurpose.Equals("Delivery"))
+                specialFormButton.onClick.AddListener(() => DisplayPrescription());
         }
         else if(customer.CustomerOrder.OrderType.Equals("Prescription") && customer.hasSpecialForm == false)
         {
@@ -43,7 +46,7 @@ public class SpecialFormsHandler : MonoBehaviour
         }
     }
 
-    private void DisplayPrescription(Customer customer)
+    private void DisplayPrescription()
     {
         // deciding if the prescription will be correct or not
         int r = (int)Random.Range(0, 2);
