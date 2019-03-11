@@ -11,7 +11,11 @@ public class Player : MonoBehaviour
 
     private int goldAmount;
     private int mistakeAmount;
+    private CustomerSpawner customerSpawner;
 
+    public bool denyCorrect = false;
+    
+    // getters and setters
     public int GoldAmount
     {
         get { return goldAmount; }
@@ -23,6 +27,11 @@ public class Player : MonoBehaviour
         set { mistakeAmount = value; }
     }
 
+    private void Start()
+    {
+        customerSpawner = GameObject.Find("Spawner").GetComponent<CustomerSpawner>();
+    }
+
     private void Update()
     {
         goldValue.text = goldAmount.ToString();
@@ -30,5 +39,21 @@ public class Player : MonoBehaviour
 
         if (mistakeAmount >= 3)
             SceneManager.LoadScene("GameOverScene");
+    }
+
+    public void DenyCustomer()
+    {
+        if (denyCorrect)
+        {
+            customerSpawner.DestroyCustomer();
+        }
+        // if player wasn't supposed to deny customer but did
+        else
+        {
+            // increment mistake counter
+            ++mistakeAmount;
+            // destroy customer
+            customerSpawner.DestroyCustomer();
+        }
     }
 }

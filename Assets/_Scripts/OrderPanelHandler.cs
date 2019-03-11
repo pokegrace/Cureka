@@ -63,7 +63,7 @@ public class OrderPanelHandler : MonoBehaviour
         customerClass.text = "Class: " + customer.ClassType;
         orderType.text = "Order Type: " + customer.CustomerOrder.OrderType;
         potionName.text = "Potion: " + customer.CustomerOrder.OrderPotion.PotionName;
-        orderPurpose.text = "Order Purpose: " + customer.CustomerOrder.OrderPurpose;
+        orderPurpose.text = "Purpose: " + customer.CustomerOrder.OrderPurpose;
         price.text = "Price: " + customer.CustomerOrder.OrderPotion.price.ToString() + "g";
     }
 }

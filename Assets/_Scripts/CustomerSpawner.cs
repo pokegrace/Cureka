@@ -9,13 +9,17 @@ public class CustomerSpawner : MonoBehaviour
 
     private bool customerSpawned = false;
     private GameObject c;
-    private Button orderFormButton;
+    private Button orderFormButton;    
+
+    private Player player;
     private OrderPanelHandler orderPanelHandler;
     private SpecialFormsHandler specialFormsHandler;
 
     private void Start()
     {
         StartCoroutine("Spawn");
+
+        player = GameObject.Find("EventSystem").GetComponent<Player>();
         specialFormsHandler = GameObject.Find("EventSystem").GetComponent<SpecialFormsHandler>();
     }
 
@@ -85,6 +89,9 @@ public class CustomerSpawner : MonoBehaviour
             orderPanelHandler.OpenClosePanel();
         if (specialFormsHandler.prescPanelOpen)
             specialFormsHandler.OpenClosePanel();
+
+        // reset denyCorrect to false
+        player.denyCorrect = false;
 
         customerSpawned = false;
         StartCoroutine("Spawn");

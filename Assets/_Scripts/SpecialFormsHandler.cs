@@ -9,12 +9,15 @@ public class SpecialFormsHandler : MonoBehaviour
     [SerializeField] private Button askPrescButton;
 
     public bool prescPanelOpen;
+    public bool orderCorrect = false;
 
     private Customer customer;
+    private Player player;
     private Button specialFormButton;
 
     private void Start()
     {
+        player = GameObject.Find("EventSystem").GetComponent<Player>();
         askPrescButton.onClick.AddListener(() => AskPrescription());
     }
 
@@ -23,7 +26,7 @@ public class SpecialFormsHandler : MonoBehaviour
         customer = GameObject.Find("Customer").GetComponent<Customer>();
 
         // if the customer's order is a prescription and they have special form
-        if (customer.CustomerOrder.OrderPurpose.Equals("Personal") && customer.hasSpecialForm)
+        if (customer.CustomerOrder.OrderType.Equals("Prescription") && customer.hasSpecialForm)
         {
             // get customer's special order form button and set it as a child to canvas
             specialFormButton = customer.transform.GetChild(0).GetComponent<Button>();
@@ -33,17 +36,26 @@ public class SpecialFormsHandler : MonoBehaviour
             // adding onclick listener to the prescription order form
             specialFormButton.onClick.AddListener(() => DisplayPrescription(customer));
         }
+        else if(customer.CustomerOrder.OrderType.Equals("Prescription") && customer.hasSpecialForm == false)
+        {
+            // player has no special order when they're supposed to
+            player.denyCorrect = true;
+        }
     }
 
     private void DisplayPrescription(Customer customer)
     {
-        bool orderCorrect;
         // deciding if the prescription will be correct or not
-        int r = (int)Random.Range(1, 3);
-        if (r == 1)
+        int r = (int)Random.Range(0, 2);
+        if (r == 0)
+        {
             orderCorrect = true;
+        } 
         else
+        {
             orderCorrect = false;
+            player.denyCorrect = true;
+        }
 
         SetPanelText(prescPanel, orderCorrect);
         OpenClosePanel();

@@ -21,12 +21,14 @@ public class PotionHandler : MonoBehaviour
     private Player player;
     private Customer customer;
     private CustomerSpawner customerSpawner;
+    private SpecialFormsHandler specialFormsHandler;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("EventSystem").GetComponent<Player>();
         customerSpawner = GameObject.Find("Spawner").GetComponent<CustomerSpawner>();
+        specialFormsHandler = GameObject.Find("EventSystem").GetComponent<SpecialFormsHandler>();
 
         // setting onclick listeners to close panels
         closeOTC = otcPanel.transform.GetChild(0).GetComponent<Button>();
@@ -101,11 +103,23 @@ public class PotionHandler : MonoBehaviour
         // if player selects the potion that is on customer's order
         if (potionName.Equals(customer.CustomerOrder.OrderPotion.PotionName))
         {
-            // add potion amount to player's gold amount and destroy customer
-            player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
-            customerSpawner.DestroyCustomer();
-
+            // if customer has no special form but player gave potion anyway
+            if(customer.hasSpecialForm == false)
+            {
+                ++player.MistakeAmount;
+            }
+            // if special form was incorrect but player gave potion anyway
+            else if(customer.hasSpecialForm && specialFormsHandler.orderCorrect == false)
+            {
+                ++player.MistakeAmount;
+            }
+            else
+            {
+                // add potion amount to player's gold amount and destroy customer
+                player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
+            }
             OpenClosePresc();
+            customerSpawner.DestroyCustomer();
         }
         else
         {
