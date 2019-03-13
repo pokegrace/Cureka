@@ -55,6 +55,8 @@ public class SpecialFormsHandler : MonoBehaviour
                 specialFormButton.onClick.AddListener(() => DisplayPrescription());
             else if(customer.CustomerOrder.OrderPurpose.Equals("Delivery"))
                 specialFormButton.onClick.AddListener(() => DisplayPermit());
+            else if (customer.CustomerOrder.OrderPurpose.Equals("Alchemy") || customer.CustomerOrder.OrderPurpose.Equals("Apothecary"))
+                specialFormButton.onClick.AddListener(() => DisplayPermit());
         }
         else if(customer.CustomerOrder.OrderType.Equals("Prescription") && customer.hasSpecialForm == false)
         {
@@ -104,6 +106,10 @@ public class SpecialFormsHandler : MonoBehaviour
                 {
                     child.gameObject.GetComponent<Text>().text = "Delivery Permit";
                 }
+                else if(customer.CustomerOrder.OrderPurpose.Equals("Alchemy") || customer.CustomerOrder.OrderPurpose.Equals("Apothecary"))
+                {
+                    child.gameObject.GetComponent<Text>().text = "Alchemist's Permit";
+                }
             }
             else if (child.gameObject.name.Equals("text_customername"))
             {
@@ -140,6 +146,13 @@ public class SpecialFormsHandler : MonoBehaviour
                         child.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("broom");
                     else
                         child.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("broomIncorrect");
+                }
+                else if (customer.CustomerOrder.OrderPurpose.Equals("Alchemy") || customer.CustomerOrder.OrderPurpose.Equals("Apothecary"))
+                {
+                    if (orderCorrect)
+                        child.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("alchemy");
+                    else
+                        child.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("alchemyIncorrect");
                 }
             }
         }  

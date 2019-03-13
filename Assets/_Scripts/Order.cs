@@ -39,7 +39,7 @@ public class Order : MonoBehaviour
     {
         // randomizing order type
         int r = (int)Random.Range(0, 2);
-        if (r == 0)
+        if (r == 0) 
             orderType = "OTC";
         else
             orderType = "Prescription";
@@ -58,7 +58,7 @@ public class Order : MonoBehaviour
             else
             {
                 int r = (int)Random.Range(0, 2);
-                if (r < 0) // r == 0
+                if (r == 0) 
                     orderPurpose = "Personal";
                 else
                     orderPurpose = "Delivery";
