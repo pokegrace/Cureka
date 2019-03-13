@@ -57,6 +57,8 @@ public class SpecialFormsHandler : MonoBehaviour
                 specialFormButton.onClick.AddListener(() => DisplayPermit());
             else if (customer.CustomerOrder.OrderPurpose.Equals("Alchemy") || customer.CustomerOrder.OrderPurpose.Equals("Apothecary"))
                 specialFormButton.onClick.AddListener(() => DisplayPermit());
+            else if (customer.CustomerOrder.OrderPurpose.Equals("Wizardry"))
+                specialFormButton.onClick.AddListener(() => DisplayPermit());
         }
         else if(customer.CustomerOrder.OrderType.Equals("Prescription") && customer.hasSpecialForm == false)
         {
