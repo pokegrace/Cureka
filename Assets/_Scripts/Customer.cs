@@ -45,7 +45,9 @@ public class Customer : MonoBehaviour
         "Cordon",
         "Seilia",
         "Grendil",
-        "Eldris"
+        "Eldris",
+        "Mervin",
+        "Ariel"
     });
 
     // create a random order depending on customer class type

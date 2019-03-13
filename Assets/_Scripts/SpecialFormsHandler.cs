@@ -110,6 +110,10 @@ public class SpecialFormsHandler : MonoBehaviour
                 {
                     child.gameObject.GetComponent<Text>().text = "Alchemist's Permit";
                 }
+                else if (customer.CustomerOrder.OrderPurpose.Equals("Wizardry"))
+                {
+                    child.gameObject.GetComponent<Text>().text = "Wizard's Permit";
+                }
             }
             else if (child.gameObject.name.Equals("text_customername"))
             {
@@ -153,6 +157,13 @@ public class SpecialFormsHandler : MonoBehaviour
                         child.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("alchemy");
                     else
                         child.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("alchemyIncorrect");
+                }
+                else if (customer.CustomerOrder.OrderPurpose.Equals("Wizardry"))
+                {
+                    if (orderCorrect)
+                        child.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("wizardry");
+                    else
+                        child.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("wizardryIncorrect");
                 }
             }
         }  
