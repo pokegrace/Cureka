@@ -40,7 +40,9 @@ public class OrderAssigner : MonoBehaviour
         new PolymorphicPotion(),
         new LemonWater(),
         new MysteryPotion(),
-        new MerlinsElixir()
+        new MerlinsElixir(),
+        new SeeAllPotion(),
+        new ToadToxin()
     };
 
     // sets order to OTC or Prescription
