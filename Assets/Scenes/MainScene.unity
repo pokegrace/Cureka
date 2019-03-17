@@ -657,7 +657,7 @@ GameObject:
   - component: {fileID: 260422741}
   - component: {fileID: 260422740}
   m_Layer: 0
-  m_Name: health potion
+  m_Name: Health Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1045,8 +1045,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otcPanel: {fileID: 251313209}
   prescPanel: {fileID: 1508972663}
-  healthPotion: {fileID: 260422740}
-  gHealthPotion: {fileID: 1500805096}
   polymorphicPotion: {fileID: 1041731189}
   lemonWater: {fileID: 2123542835}
 --- !u!114 &537187926
@@ -2005,7 +2003,7 @@ GameObject:
   - component: {fileID: 1041731190}
   - component: {fileID: 1041731189}
   m_Layer: 0
-  m_Name: polymorphic potion
+  m_Name: Polymorphic Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3033,7 +3031,7 @@ GameObject:
   - component: {fileID: 1500805097}
   - component: {fileID: 1500805096}
   m_Layer: 0
-  m_Name: greater health potion
+  m_Name: Greater Health Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3938,7 +3936,7 @@ GameObject:
   - component: {fileID: 2123542836}
   - component: {fileID: 2123542835}
   m_Layer: 0
-  m_Name: lemon water
+  m_Name: Lemon Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

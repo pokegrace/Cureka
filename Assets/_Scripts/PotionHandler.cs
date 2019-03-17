@@ -8,10 +8,8 @@ public class PotionHandler : MonoBehaviour
     [SerializeField] private GameObject otcPanel;
     [SerializeField] private GameObject prescPanel;
 
-    [SerializeField] private Button healthPotion;
-    [SerializeField] private Button gHealthPotion;
-    [SerializeField] private Button polymorphicPotion;
-    [SerializeField] private Button lemonWater;
+    private Button[] otcPotions;
+    private Button[] prescPotions;
 
     private bool otcOpen = false;
     private bool prescOpen = false;
@@ -36,13 +34,18 @@ public class PotionHandler : MonoBehaviour
         closePresc = prescPanel.transform.GetChild(0).GetComponent<Button>();
         closePresc.onClick.AddListener(() => OpenClosePresc());
 
-        // otc potions
-        healthPotion.onClick.AddListener(() => CheckOTCPotion("Health Potion"));
-        gHealthPotion.onClick.AddListener(() => CheckOTCPotion("Greater Health Potion"));
+        otcPotions = otcPanel.GetComponentsInChildren<Button>();
+        prescPotions = prescPanel.GetComponentsInChildren<Button>();
 
-        // presc potions
-        polymorphicPotion.onClick.AddListener(() => CheckPrescPotion("Polymorphic Potion"));
-        lemonWater.onClick.AddListener(() => CheckPrescPotion("Lemon Water"));
+        // assigning onclick listeners to each potion button
+        foreach(Button b in otcPotions)
+        {
+            b.onClick.AddListener(() => CheckOTCPotion(b.name));
+        }
+        foreach(Button b in prescPotions)
+        {
+            b.onClick.AddListener(() => CheckPrescPotion(b.name));
+        }
     }
 
     public void OpenCloseOTC()

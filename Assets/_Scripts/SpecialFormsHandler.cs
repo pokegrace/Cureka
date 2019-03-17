@@ -122,7 +122,7 @@ public class SpecialFormsHandler : MonoBehaviour
                 if (orderCorrect)
                     child.gameObject.GetComponent<Text>().text = "Name: " + customer.CustomerName;
                 else
-                    child.gameObject.GetComponent<Text>().text = "Name: " + customer.nameList[(Random.Range(0, customer.nameList.Count - 1))];
+                    child.gameObject.GetComponent<Text>().text = "Name: " + OrderAssigner.nameList[(Random.Range(0, OrderAssigner.nameList.Count - 1))];
             }
             else if (child.gameObject.name.Equals("text_class"))
             {
@@ -134,7 +134,7 @@ public class SpecialFormsHandler : MonoBehaviour
                     child.gameObject.GetComponent<Text>().text = "Potion: " + customer.CustomerOrder.OrderPotion.PotionName;
                 else
                     child.gameObject.GetComponent<Text>().text = "Potion: " +
-                        customer.CustomerOrder.PrescriptionPotions[Random.Range(0, customer.CustomerOrder.PrescriptionPotions.Length)].PotionName;
+                        OrderAssigner.PrescriptionPotions[Random.Range(0, OrderAssigner.PrescriptionPotions.Length)].PotionName;
             }
             else if (child.gameObject.name.Equals("text_purpose"))
             {

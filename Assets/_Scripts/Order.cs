@@ -22,18 +22,6 @@ public class Order : MonoBehaviour
         get { return orderPotion; }
     }
 
-    // arrays of potions
-    public Potion[] OTCPotions = new Potion[]
-    {
-        new HealthPotion(),
-        new GreaterHealthPotion()
-    };
-    public Potion[] PrescriptionPotions = new Potion[]
-    {
-        new PolymorphicPotion(),
-        new LemonWater()
-    };
-
     // Constructor
     public Order(string classType)
     {
@@ -103,8 +91,8 @@ public class Order : MonoBehaviour
     private void SetOrderPotion()
     {
         if(orderType.Equals("OTC"))
-            orderPotion = OTCPotions[(int)Random.Range(0, OTCPotions.Length)];
+            orderPotion = OrderAssigner.OTCPotions[(int)Random.Range(0, OrderAssigner.OTCPotions.Length)];
         else
-            orderPotion = PrescriptionPotions[(int)Random.Range(0, PrescriptionPotions.Length)];
+            orderPotion = OrderAssigner.PrescriptionPotions[(int)Random.Range(0, OrderAssigner.PrescriptionPotions.Length)];
     }
 }

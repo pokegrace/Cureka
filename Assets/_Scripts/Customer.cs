@@ -27,29 +27,6 @@ public class Customer : MonoBehaviour
         set { customerOrder = value; }
     }
 
-    // lists of names/classes
-    public List<string> classList = new List<string>(new string[]
-    {
-        "Courier",
-        "Lackey",
-        "Adventurer",
-        "Alchemist",
-        "Sorcerer",
-        "Herbalist",
-        "Shaman",
-        "Wizard"
-    });
-    public List<string> nameList = new List<string>(new string[]
-    {
-        "Helena",
-        "Cordon",
-        "Seilia",
-        "Grendil",
-        "Eldris",
-        "Mervin",
-        "Ariel"
-    });
-
     // create a random order depending on customer class type
     public void CreateOrder()
     {

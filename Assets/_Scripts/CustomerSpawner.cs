@@ -56,8 +56,8 @@ public class CustomerSpawner : MonoBehaviour
             orderFormButton.onClick.AddListener(() => orderPanelHandler.OpenClosePanel());
 
             // setting customer's fields
-            customer.CustomerName = customer.nameList[(int)Random.Range(0, customer.nameList.Count - 1)];
-            customer.ClassType = customer.classList[(int)Random.Range(0, customer.classList.Count - 1)];
+            customer.CustomerName = OrderAssigner.nameList[(int)Random.Range(0, OrderAssigner.nameList.Count - 1)];
+            customer.ClassType = OrderAssigner.classList[(int)Random.Range(0, OrderAssigner.classList.Count - 1)];
 
             customer.CreateOrder();
 
