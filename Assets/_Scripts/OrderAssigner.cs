@@ -33,7 +33,10 @@ public class OrderAssigner : MonoBehaviour
     {
         new HealthPotion(),
         new GreaterHealthPotion(),
-        new BerryJuice()
+        new BerryJuice(),
+        new PureWater(),
+        new SnakeBalm(),
+        new ElixirOfRepair()
     };
     public static Potion[] PrescriptionPotions = new Potion[]
     {
