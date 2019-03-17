@@ -71,7 +71,7 @@ public class OrderAssigner : MonoBehaviour
         if (classType.Equals("Lackey") || classType.Equals("Adventurer"))
         {
             if (order.OrderType.Equals("OTC"))
-                return "Personal";
+                return "Over the Counter";
             else
             {
                 int r = (int)Random.Range(0, 3);
@@ -84,7 +84,7 @@ public class OrderAssigner : MonoBehaviour
         else if (classType.Equals("Alchemist") || classType.Equals("Herbalist") || classType.Equals("Shaman"))
         {
             if (order.OrderType.Equals("OTC"))
-                return "Personal";
+                return "Over the Counter";
             else
             {
                 int r = (int)Random.Range(0, 3);
@@ -99,7 +99,7 @@ public class OrderAssigner : MonoBehaviour
         else
         {
             if (order.OrderType.Equals("OTC"))
-                return "Personal";
+                return "Over the Counter";
             else
             {
                 int r = (int)Random.Range(0, 3);
