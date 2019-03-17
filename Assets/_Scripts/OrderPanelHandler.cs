@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIHandler : MonoBehaviour
+public class OrderPanelHandler : MonoBehaviour
 {
-    private bool panelActive = false;
+    [SerializeField] private Text textGoldValue;
+
+    public bool panelActive = false;
     private Customer customer;
 
     private GameObject orderPanel;
@@ -20,10 +22,10 @@ public class UIHandler : MonoBehaviour
     // finding all references
     private void Start()
     {
-        orderPanel = GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(1).gameObject;
+        orderPanel = GameObject.FindGameObjectWithTag("Canvas").transform.Find("Order Form").gameObject;
 
         closeButton = orderPanel.transform.GetChild(7).GetComponent<Button>();
-        closeButton.onClick.AddListener(() => SetPanelActive());
+        closeButton.onClick.AddListener(() => OpenClosePanel());
 
         customerName = orderPanel.transform.GetChild(1).GetComponent<Text>();
         customerClass = orderPanel.transform.GetChild(2).GetComponent<Text>();
@@ -34,12 +36,15 @@ public class UIHandler : MonoBehaviour
     }
 
     // button onclick listener added in Start() and CreateCustomer() in CustomerSpawner.cs
-    public void SetPanelActive()
+    public void OpenClosePanel()
     {
         customer = GameObject.Find("Customer").GetComponent<Customer>();
 
         if (!panelActive)
         {
+            // bring panel to top layer
+            orderPanel.transform.SetAsLastSibling();
+
             orderPanel.SetActive(true);
             SetPanelText();
             panelActive = true;
@@ -58,7 +63,7 @@ public class UIHandler : MonoBehaviour
         customerClass.text = "Class: " + customer.ClassType;
         orderType.text = "Order Type: " + customer.CustomerOrder.OrderType;
         potionName.text = "Potion: " + customer.CustomerOrder.OrderPotion.PotionName;
-        orderPurpose.text = "Order Purpose: " + customer.CustomerOrder.OrderPurpose;
+        orderPurpose.text = "Purpose: " + customer.CustomerOrder.OrderPurpose;
         price.text = "Price: " + customer.CustomerOrder.OrderPotion.price.ToString() + "g";
     }
 }

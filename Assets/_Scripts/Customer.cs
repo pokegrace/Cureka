@@ -8,6 +8,8 @@ public class Customer : MonoBehaviour
     private string customerName;
     private Order customerOrder;
 
+    public bool hasSpecialForm;
+
     // getters and setters
     public string CustomerName
     {
@@ -25,30 +27,9 @@ public class Customer : MonoBehaviour
         set { customerOrder = value; }
     }
 
-    // arrays of names/classes
-    public string[] classList = new string[]
-    {
-        "Courier",
-        "Lackey",
-        "Adventurer",
-        "Alchemist",
-        "Sorcerer",
-        "Herbalist",
-        "Shaman",
-        "Wizard"
-    };
-    public string[] nameList = new string[]
-    {
-        "Tim",
-        "Bill",
-        "Nelly",
-        "Mina",
-        "Eldritch Mystifier"
-    };
-
     // create a random order depending on customer class type
     public void CreateOrder()
     {
-        customerOrder = new Order(this.ClassType);
+        customerOrder = new Order(classType);
     }
 }
