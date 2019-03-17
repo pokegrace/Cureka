@@ -1045,8 +1045,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otcPanel: {fileID: 251313209}
   prescPanel: {fileID: 1508972663}
-  polymorphicPotion: {fileID: 1041731189}
-  lemonWater: {fileID: 2123542835}
 --- !u!114 &537187926
 MonoBehaviour:
   m_ObjectHideFlags: 0

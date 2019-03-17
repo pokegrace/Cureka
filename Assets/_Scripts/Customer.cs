@@ -30,6 +30,6 @@ public class Customer : MonoBehaviour
     // create a random order depending on customer class type
     public void CreateOrder()
     {
-        customerOrder = new Order(this.ClassType);
+        customerOrder = new Order(classType);
     }
 }

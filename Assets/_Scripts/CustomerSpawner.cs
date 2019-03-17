@@ -56,22 +56,11 @@ public class CustomerSpawner : MonoBehaviour
             orderFormButton.onClick.AddListener(() => orderPanelHandler.OpenClosePanel());
 
             // setting customer's fields
-            customer.CustomerName = OrderAssigner.nameList[(int)Random.Range(0, OrderAssigner.nameList.Count - 1)];
-            customer.ClassType = OrderAssigner.classList[(int)Random.Range(0, OrderAssigner.classList.Count - 1)];
+            customer.CustomerName = OrderAssigner.nameList[Random.Range(0, OrderAssigner.nameList.Count - 1)];
+            customer.ClassType = OrderAssigner.classList[Random.Range(0, OrderAssigner.classList.Count - 1)];
 
             customer.CreateOrder();
-
-            // deciding if customer has special form or not
-            if(customer.CustomerOrder.OrderType.Equals("Prescription"))
-            {
-                int r = Random.Range(0, 4);
-                if (r <= 2)
-                    customer.hasSpecialForm = true;
-                else
-                    customer.hasSpecialForm = false;
-
-                Debug.Log("has special form: " + customer.hasSpecialForm);
-            }
+            OrderAssigner.GiveSpecialForm(customer);
 
             customerSpawned = true;
         }
