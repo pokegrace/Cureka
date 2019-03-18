@@ -66,8 +66,13 @@ public class CustomerSpawner : MonoBehaviour
         }
     }
 
-    public void DestroyCustomer()
+    public IEnumerator DestroyCustomer(string state)
     {
+        Animator animator = GameObject.Find("Customer").transform.Find("animator").GetComponent<Animator>();
+        animator.SetBool(state, true);
+
+        yield return new WaitForSeconds(1.5f);
+
         // destroy customer and their forms
         Destroy(c.gameObject);
         Destroy(orderFormButton.gameObject);

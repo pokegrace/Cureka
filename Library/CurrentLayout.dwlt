@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 498}
   m_MaxSize: {x: 18008, y: 14048}
   vertical: 0
-  controlID: 128
+  controlID: 85
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 14006, y: 14048}
   vertical: 1
-  controlID: 51
+  controlID: 86
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 31
+  controlID: 87
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_MinSize: {x: 336, y: 274}
   m_MaxSize: {x: 14006, y: 10024}
   vertical: 0
-  controlID: 52
+  controlID: 107
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -371,7 +371,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -432,9 +432,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: b6230000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d4fbffff28310000
+      m_ExpandedIDs: 5eb5ffff90dcffffd4fbffff1631000028310000c03100007876000068780000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -489,9 +489,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 560.8975, y: 376.1719, z: -5.875}
+    m_Target: {x: 585.71094, y: 370.377, z: 12.75}
     speed: 2
-    m_Value: {x: 560.8975, y: 376.1719, z: -5.875}
+    m_Value: {x: 585.71094, y: 370.377, z: 12.75}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -523,9 +523,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 804.42035
+    m_Target: 840.933
     speed: 2
-    m_Value: 804.42035
+    m_Value: 840.933
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -691,20 +691,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Scripts
+    - Assets/Sprites
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_Scripts
+  - Assets/Sprites
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\pokeg\OneDrive\Documents\GitHub\Cureka
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7c270000
-    m_LastClickedID: 10108
-    m_ExpandedIDs: 000000002c2600007c2700009c280000802e0000
+    m_SelectedIDs: 48280000
+    m_LastClickedID: 10312
+    m_ExpandedIDs: 000000002c2600007c2700009c280000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -760,7 +760,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: e8250000802c0000dc290000142b000076300000e6280000022a000044290000388afdff322b00007a24000076350000cc2a0000000000005e2a0000402b00005a270000502b000052300000a8300000762800007a28000050260000ee0b0000
+    m_ExpandedInstanceIDs: e8250000802c0000dc290000142b000076300000e6280000022a000044290000388afdff322b00007a24000076350000cc2a0000000000005e2a0000402b00005a270000502b000052300000a8300000762800007a28000050260000ee0b00000a300000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

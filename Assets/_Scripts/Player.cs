@@ -45,15 +45,23 @@ public class Player : MonoBehaviour
     {
         if (denyCorrect)
         {
-            customerSpawner.DestroyCustomer();
+            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
         }
         // if player wasn't supposed to deny customer but did
         else
         {
             // increment mistake counter
             ++mistakeAmount;
+            // play mistake animation
+            //playEmote("Wrong");
             // destroy customer
-            customerSpawner.DestroyCustomer();
+            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
         }
     }
+
+    /*private void playEmote(string state)
+    {
+        Animator animator = GameObject.Find("Customer").transform.Find("animator").GetComponent<Animator>();
+        animator.SetBool(state, true);
+    }*/
 }
