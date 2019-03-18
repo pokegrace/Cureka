@@ -52,16 +52,8 @@ public class Player : MonoBehaviour
         {
             // increment mistake counter
             ++mistakeAmount;
-            // play mistake animation
-            //playEmote("Wrong");
-            // destroy customer
+            // play emote and destroy customer
             StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
         }
     }
-
-    /*private void playEmote(string state)
-    {
-        Animator animator = GameObject.Find("Customer").transform.Find("animator").GetComponent<Animator>();
-        animator.SetBool(state, true);
-    }*/
 }
