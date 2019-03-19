@@ -40,11 +40,17 @@ public class PotionHandler : MonoBehaviour
         // assigning onclick listeners to each potion button
         foreach(Button b in otcPotions)
         {
-            b.onClick.AddListener(() => CheckOTCPotion(b.name));
+            if (b.name.Equals("button_close"))
+                continue;
+            else
+                b.onClick.AddListener(() => CheckOTCPotion(b.name));
         }
         foreach(Button b in prescPotions)
         {
-            b.onClick.AddListener(() => CheckPrescPotion(b.name));
+            if (b.name.Equals("button_close"))
+                continue;
+            else
+                b.onClick.AddListener(() => CheckPrescPotion(b.name));
         }
     }
 
