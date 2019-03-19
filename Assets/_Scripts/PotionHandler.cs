@@ -86,7 +86,7 @@ public class PotionHandler : MonoBehaviour
         {
             // add potion amount to player's gold amount and destroy customer
             player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
-            customerSpawner.DestroyCustomer();
+            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
 
             OpenCloseOTC();
         }
@@ -95,7 +95,7 @@ public class PotionHandler : MonoBehaviour
         {
             player.MistakeAmount += 1;
             OpenCloseOTC();
-            customerSpawner.DestroyCustomer();
+            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
         }
     }
 
@@ -122,13 +122,13 @@ public class PotionHandler : MonoBehaviour
                 player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
             }
             OpenClosePresc();
-            customerSpawner.DestroyCustomer();
+            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
         }
         else
         {
             player.MistakeAmount += 1;
             OpenClosePresc();
-            customerSpawner.DestroyCustomer();
+            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
         }
     }
 }
