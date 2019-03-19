@@ -6,9 +6,9 @@ public class HealthPotion : Potion
 {
     public HealthPotion()
     {
-        this.PotionName = "Health Potion";
+        PotionName = "Health Potion";
         potionType = "OTC";
-        description = "A small healing potion created by the Great Wizard himself. Heals 4 - 10 HP.";
+        description = "A small healing potion created from the juices of the fire flower. Heals 4 - 10 HP.";
 
         price = 400;
     }

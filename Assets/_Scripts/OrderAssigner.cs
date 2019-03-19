@@ -32,13 +32,20 @@ public class OrderAssigner : MonoBehaviour
     public static Potion[] OTCPotions = new Potion[]
     {
         new HealthPotion(),
-        new GreaterHealthPotion()
+        new GreaterHealthPotion(),
+        new BerryJuice(),
+        new PureWater(),
+        new SnakeBalm(),
+        new ElixirOfRepair()
     };
     public static Potion[] PrescriptionPotions = new Potion[]
     {
         new PolymorphicPotion(),
         new LemonWater(),
-        new MysteryPotion()
+        new MysteryPotion(),
+        new MerlinsElixir(),
+        new SeeAllPotion(),
+        new ToadToxin()
     };
 
     // sets order to OTC or Prescription

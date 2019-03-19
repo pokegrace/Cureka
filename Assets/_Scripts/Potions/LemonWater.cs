@@ -6,7 +6,7 @@ public class LemonWater : Potion
 {
     public LemonWater()
     {
-        this.PotionName = "Lemon Water";
+        PotionName = "Lemon Water";
         potionType = "Prescription";
         description = "A tangy, yellow substance... no one knows what it does, so it's best to leave the experimenting up to the experts.";
 
