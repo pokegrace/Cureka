@@ -7,8 +7,8 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance = null;
     public AudioSource efxSource;
 
-    public static AudioClip soldSound;
-    [SerializeField] private AudioClip sold;
+    public static AudioClip whoopieSound;
+    [SerializeField] private AudioClip whoopie;
     public static AudioClip openSound;
     [SerializeField] private AudioClip open;
     public static AudioClip buttonPushSound;
@@ -30,7 +30,7 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
 
         // assigning sounds to static audio clips
-        soldSound = sold;
+        whoopieSound = whoopie;
         openSound = open;
         buttonPushSound = buttonPush;
         incorrectSound = incorrect;

@@ -11,6 +11,6 @@ Emotes - (Author: Kicked-in-Teeth) https://kicked-in-teeth.itch.io/emoticons
 Font - Lunchds by codeman38 / DisposableDroidBB by Nate Piekos
 Seal Icons - Freepik https://www.flaticon.com/packs/fairytale
 Background Music - Eric Matyas https://soundimage.org/fantasywonder/
-Sold/Incorrect/Angry Sound Effects - From Zapsplat https://www.zapsplat.com/sound-effect-category/fantasy/
+Whoopie/Incorrect/Angry Sound Effects - From Zapsplat https://www.zapsplat.com/sound-effect-category/fantasy/
 Potion Shelf Open Sound Effect - Little Robot Sound Factory https://freesound.org/s/270393/
 Button Press Sound Effect - Mike Koenig http://soundbible.com/1950-Button-Push.html

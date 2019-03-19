@@ -13,6 +13,7 @@ public class PotionHandler : MonoBehaviour
 
     private bool otcOpen = false;
     private bool prescOpen = false;
+    private bool playSoldSound = false;
     private Button closeOTC;
     private Button closePresc;
 
@@ -66,7 +67,13 @@ public class PotionHandler : MonoBehaviour
             otcPanel.SetActive(false);
             otcOpen = false;
         }
-        SoundManager.instance.PlaySingle(SoundManager.buttonPushSound);
+        if (playSoldSound)
+        {
+            SoundManager.instance.PlaySingle(SoundManager.whoopieSound);
+            playSoldSound = false;
+        }
+        else
+            SoundManager.instance.PlaySingle(SoundManager.buttonPushSound);
     }
 
     public void OpenClosePresc()
@@ -95,7 +102,7 @@ public class PotionHandler : MonoBehaviour
             // add potion amount to player's gold amount and destroy customer
             player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
             customerSpawner.PlayAnimation("Correct");
-            SoundManager.instance.PlaySingle(SoundManager.soldSound);
+            playSoldSound = true;
 
             OpenCloseOTC();
         }
@@ -135,7 +142,7 @@ public class PotionHandler : MonoBehaviour
                 // add potion amount to player's gold amount and destroy customer
                 player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
                 customerSpawner.PlayAnimation("Correct");
-                SoundManager.instance.PlaySingle(SoundManager.soldSound);
+                playSoldSound = true;
             }
             OpenClosePresc();
         }
