@@ -69,7 +69,7 @@ public class CustomerSpawner : MonoBehaviour
 
     public IEnumerator DestroyCustomer(string state)
     {
-        Animator animator = GameObject.Find("Customer").transform.Find("animator").GetComponent<Animator>();
+        Animator animator = GameObject.Find("Customer").transform.Find("emote animator").GetComponent<Animator>();
         animator.SetBool(state, true);
 
         yield return new WaitForSeconds(1.5f);
