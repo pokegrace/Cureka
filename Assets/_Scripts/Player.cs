@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
     {
         if (denyCorrect)
         {
-            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
+            StartCoroutine(customerSpawner.DestroyCustomer("Angry"));
         }
         // if player wasn't supposed to deny customer but did
         else

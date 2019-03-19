@@ -71,13 +71,14 @@ public class CustomerSpawner : MonoBehaviour
     {
         Animator animator = GameObject.Find("Customer").transform.Find("emote animator").GetComponent<Animator>();
         animator.SetBool(state, true);
+        Debug.Log("animator playing: " + state);
 
         yield return new WaitForSeconds(1.5f);
 
         // destroy customer and their forms
         Destroy(c.gameObject);
         Destroy(orderFormButton.gameObject);
-        if(c.GetComponent<Customer>().hasSpecialForm)
+        if(GameObject.Find("Special Form Button"))
             Destroy(GameObject.Find("Special Form Button").gameObject);
 
         // close panel if it's open

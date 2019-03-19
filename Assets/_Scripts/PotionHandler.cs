@@ -86,7 +86,7 @@ public class PotionHandler : MonoBehaviour
         {
             // add potion amount to player's gold amount and destroy customer
             player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
-            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
+            StartCoroutine(customerSpawner.DestroyCustomer("Correct"));
 
             OpenCloseOTC();
         }
@@ -110,19 +110,21 @@ public class PotionHandler : MonoBehaviour
             if(customer.hasSpecialForm == false)
             {
                 ++player.MistakeAmount;
+                StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
             }
             // if special form was incorrect but player gave potion anyway
             else if(customer.hasSpecialForm && specialFormsHandler.orderCorrect == false)
             {
                 ++player.MistakeAmount;
+                StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
             }
             else
             {
                 // add potion amount to player's gold amount and destroy customer
                 player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
+                StartCoroutine(customerSpawner.DestroyCustomer("Correct"));
             }
             OpenClosePresc();
-            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
         }
         else
         {
