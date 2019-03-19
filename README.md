@@ -10,3 +10,4 @@ UI Elements - (Author: Kenney) https://opengameart.org/content/pixel-ui-pack-750
 Emotes - (Author: Kicked-in-Teeth) https://kicked-in-teeth.itch.io/emoticons
 Font - Lunchds by codeman38 / DisposableDroidBB by Nate Piekos
 Seal Icons - Freepik https://www.flaticon.com/packs/fairytale
+Background Music - Eric Matyas https://soundimage.org/fantasywonder/
