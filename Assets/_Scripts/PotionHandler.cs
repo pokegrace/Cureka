@@ -13,6 +13,7 @@ public class PotionHandler : MonoBehaviour
 
     private bool otcOpen = false;
     private bool prescOpen = false;
+    private bool playSoldSound = false;
     private Button closeOTC;
     private Button closePresc;
 
@@ -20,6 +21,7 @@ public class PotionHandler : MonoBehaviour
     private Customer customer;
     private CustomerSpawner customerSpawner;
     private SpecialFormsHandler specialFormsHandler;
+    private OrderPanelHandler orderPanelHandler;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class PotionHandler : MonoBehaviour
         player = GameObject.Find("EventSystem").GetComponent<Player>();
         customerSpawner = GameObject.Find("Spawner").GetComponent<CustomerSpawner>();
         specialFormsHandler = GameObject.Find("EventSystem").GetComponent<SpecialFormsHandler>();
+        orderPanelHandler = GameObject.Find("EventSystem").GetComponent<OrderPanelHandler>();
 
         // setting onclick listeners to close panels
         closeOTC = otcPanel.transform.GetChild(0).GetComponent<Button>();
@@ -40,11 +43,17 @@ public class PotionHandler : MonoBehaviour
         // assigning onclick listeners to each potion button
         foreach(Button b in otcPotions)
         {
-            b.onClick.AddListener(() => CheckOTCPotion(b.name));
+            if (b.name.Equals("button_close"))
+                continue;
+            else
+                b.onClick.AddListener(() => CheckOTCPotion(b.name));
         }
         foreach(Button b in prescPotions)
         {
-            b.onClick.AddListener(() => CheckPrescPotion(b.name));
+            if (b.name.Equals("button_close"))
+                continue;
+            else
+                b.onClick.AddListener(() => CheckPrescPotion(b.name));
         }
     }
 
@@ -52,6 +61,12 @@ public class PotionHandler : MonoBehaviour
     {
         if (!otcOpen)
         {
+            // if order / prescription form is open, close them
+            if (GameObject.Find("Order Form"))
+                orderPanelHandler.OpenClosePanel();
+            if (GameObject.Find("Prescription"))
+                specialFormsHandler.OpenClosePanel(GameObject.Find("Prescription"));
+
             otcPanel.SetActive(true);
             otcOpen = true;
         }
@@ -60,12 +75,25 @@ public class PotionHandler : MonoBehaviour
             otcPanel.SetActive(false);
             otcOpen = false;
         }
+        if (playSoldSound)
+        {
+            SoundManager.instance.PlaySingle(SoundManager.whoopieSound);
+            playSoldSound = false;
+        }
+        else
+            SoundManager.instance.PlaySingle(SoundManager.buttonPushSound);
     }
 
     public void OpenClosePresc()
     {
         if (!prescOpen)
         {
+            // if order / prescription form is open, close them
+            if (GameObject.Find("Order Form"))
+                orderPanelHandler.OpenClosePanel();
+            if (GameObject.Find("Prescription"))
+                specialFormsHandler.OpenClosePanel(GameObject.Find("Prescription"));
+
             prescPanel.SetActive(true);
             prescOpen = true;
         }
@@ -74,6 +102,7 @@ public class PotionHandler : MonoBehaviour
             prescPanel.SetActive(false);
             prescOpen = false;
         }
+        SoundManager.instance.PlaySingle(SoundManager.buttonPushSound);
     }
 
     private void CheckOTCPotion(string potionName)
@@ -86,7 +115,8 @@ public class PotionHandler : MonoBehaviour
         {
             // add potion amount to player's gold amount and destroy customer
             player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
-            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
+            customerSpawner.PlayAnimation("Correct");
+            playSoldSound = true;
 
             OpenCloseOTC();
         }
@@ -95,7 +125,8 @@ public class PotionHandler : MonoBehaviour
         {
             player.MistakeAmount += 1;
             OpenCloseOTC();
-            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
+            customerSpawner.PlayAnimation("Wrong");
+            SoundManager.instance.PlaySingle(SoundManager.incorrectSound);
         }
     }
 
@@ -110,25 +141,31 @@ public class PotionHandler : MonoBehaviour
             if(customer.hasSpecialForm == false)
             {
                 ++player.MistakeAmount;
+                customerSpawner.PlayAnimation("Wrong");
+                SoundManager.instance.PlaySingle(SoundManager.incorrectSound);
             }
             // if special form was incorrect but player gave potion anyway
             else if(customer.hasSpecialForm && specialFormsHandler.orderCorrect == false)
             {
                 ++player.MistakeAmount;
+                customerSpawner.PlayAnimation("Wrong");
+                SoundManager.instance.PlaySingle(SoundManager.incorrectSound);
             }
             else
             {
                 // add potion amount to player's gold amount and destroy customer
                 player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
+                customerSpawner.PlayAnimation("Correct");
+                playSoldSound = true;
             }
             OpenClosePresc();
-            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
         }
         else
         {
             player.MistakeAmount += 1;
             OpenClosePresc();
-            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
+            customerSpawner.PlayAnimation("Wrong");
+            SoundManager.instance.PlaySingle(SoundManager.incorrectSound);
         }
     }
 }

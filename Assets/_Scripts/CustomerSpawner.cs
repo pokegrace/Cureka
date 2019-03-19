@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CustomerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject customerClone;
+    [SerializeField] private GameObject orderButtonClone;
 
     private bool customerSpawned = false;
     private GameObject c;
@@ -45,12 +47,12 @@ public class CustomerSpawner : MonoBehaviour
 
             // finding all components from customer
             Customer customer = c.GetComponent<Customer>();
-            orderPanelHandler = customer.GetComponent<OrderPanelHandler>();
+            orderPanelHandler = GameObject.Find("EventSystem").GetComponent<OrderPanelHandler>();
 
             // finding button, childing it to the main canvas
-            orderFormButton = customer.transform.GetChild(0).GetComponent<Button>();
-            orderFormButton.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
+            orderFormButton = Instantiate(orderButtonClone, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Button>();
             orderFormButton.transform.SetSiblingIndex(2);
+            orderFormButton.transform.localPosition = new Vector3(110, -115, 0);
 
             // adding onClick listener to customer's order button
             orderFormButton.onClick.AddListener(() => orderPanelHandler.OpenClosePanel());
@@ -66,18 +68,8 @@ public class CustomerSpawner : MonoBehaviour
         }
     }
 
-    public IEnumerator DestroyCustomer(string state)
+    public void PlayAnimation(string state)
     {
-        Animator animator = GameObject.Find("Customer").transform.Find("animator").GetComponent<Animator>();
-        animator.SetBool(state, true);
-
-        yield return new WaitForSeconds(1.5f);
-
-        // destroy customer and their forms
-        Destroy(c.gameObject);
-        Destroy(orderFormButton.gameObject);
-        Destroy(GameObject.Find("button_specialform").gameObject);
-
         // close panel if it's open
         if (orderPanelHandler.panelActive)
             orderPanelHandler.OpenClosePanel();
@@ -85,13 +77,36 @@ public class CustomerSpawner : MonoBehaviour
         {
             if (GameObject.Find("Prescription"))
                 specialFormsHandler.OpenClosePanel(GameObject.Find("Prescription"));
-            else if(GameObject.Find("Permit"))
+            else if (GameObject.Find("Permit"))
                 specialFormsHandler.OpenClosePanel(GameObject.Find("Permit"));
         }
 
+        // play animation
+        Animator animator = GameObject.Find("Customer").transform.Find("emote animator").GetComponent<Animator>();
+        animator.SetBool(state, true);
+        Debug.Log("animator playing: " + state);
+
+        // call coroutine to destroy customer
+        StartCoroutine("DestroyCustomer");
+    }
+
+    private IEnumerator DestroyCustomer()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        // destroy customer and their forms
+        Destroy(c.gameObject);
+        Destroy(orderFormButton.gameObject);
+        if(GameObject.Find("Special Form Button"))
+            Destroy(GameObject.Find("Special Form Button").gameObject);
+
+        // if player's mistake amount is 3, game over
+        if (player.MistakeAmount >= 3)
+            SceneManager.LoadScene("GameOverScene");
+
         // reset denyCorrect to false
         player.denyCorrect = false;
-
+        
         customerSpawned = false;
         StartCoroutine("Spawn");
     }

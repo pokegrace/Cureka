@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class OrderPanelHandler : MonoBehaviour
 {
-    [SerializeField] private Text textGoldValue;
-
     public bool panelActive = false;
     private Customer customer;
 
@@ -54,6 +52,7 @@ public class OrderPanelHandler : MonoBehaviour
             orderPanel.SetActive(false);
             panelActive = false;
         }
+        SoundManager.instance.PlaySingle(SoundManager.openSound);
     }
 
     // adding text to all fields
