@@ -36,16 +36,13 @@ public class Player : MonoBehaviour
     {
         goldValue.text = goldAmount.ToString();
         mistakeValue.text = mistakeAmount.ToString();
-
-        if (mistakeAmount >= 3)
-            SceneManager.LoadScene("GameOverScene");
     }
 
     public void DenyCustomer()
     {
         if (denyCorrect)
         {
-            StartCoroutine(customerSpawner.DestroyCustomer("Angry"));
+            customerSpawner.PlayAnimation("Angry");
         }
         // if player wasn't supposed to deny customer but did
         else
@@ -53,7 +50,7 @@ public class Player : MonoBehaviour
             // increment mistake counter
             ++mistakeAmount;
             // play emote and destroy customer
-            StartCoroutine(customerSpawner.DestroyCustomer("Wrong"));
+            customerSpawner.PlayAnimation("Wrong");
         }
     }
 }

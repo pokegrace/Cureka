@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CustomerSpawner : MonoBehaviour
@@ -67,12 +68,30 @@ public class CustomerSpawner : MonoBehaviour
         }
     }
 
-    public IEnumerator DestroyCustomer(string state)
+    public void PlayAnimation(string state)
     {
+        // close panel if it's open
+        if (orderPanelHandler.panelActive)
+            orderPanelHandler.OpenClosePanel();
+        if (specialFormsHandler.panelOpen)
+        {
+            if (GameObject.Find("Prescription"))
+                specialFormsHandler.OpenClosePanel(GameObject.Find("Prescription"));
+            else if (GameObject.Find("Permit"))
+                specialFormsHandler.OpenClosePanel(GameObject.Find("Permit"));
+        }
+
+        // play animation
         Animator animator = GameObject.Find("Customer").transform.Find("emote animator").GetComponent<Animator>();
         animator.SetBool(state, true);
         Debug.Log("animator playing: " + state);
 
+        // call coroutine to destroy customer
+        StartCoroutine("DestroyCustomer");
+    }
+
+    private IEnumerator DestroyCustomer()
+    {
         yield return new WaitForSeconds(1.5f);
 
         // destroy customer and their forms
@@ -81,20 +100,13 @@ public class CustomerSpawner : MonoBehaviour
         if(GameObject.Find("Special Form Button"))
             Destroy(GameObject.Find("Special Form Button").gameObject);
 
-        // close panel if it's open
-        if (orderPanelHandler.panelActive)
-            orderPanelHandler.OpenClosePanel();
-        if (specialFormsHandler.panelOpen)
-        {
-            if (GameObject.Find("Prescription"))
-                specialFormsHandler.OpenClosePanel(GameObject.Find("Prescription"));
-            else if(GameObject.Find("Permit"))
-                specialFormsHandler.OpenClosePanel(GameObject.Find("Permit"));
-        }
+        // if player's mistake amount is 3, game over
+        if (player.MistakeAmount >= 3)
+            SceneManager.LoadScene("GameOverScene");
 
         // reset denyCorrect to false
         player.denyCorrect = false;
-
+        
         customerSpawned = false;
         StartCoroutine("Spawn");
     }
