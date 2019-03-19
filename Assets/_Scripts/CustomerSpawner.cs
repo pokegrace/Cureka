@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CustomerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject customerClone;
+    [SerializeField] private GameObject orderButtonClone;
 
     private bool customerSpawned = false;
     private GameObject c;
@@ -45,12 +46,12 @@ public class CustomerSpawner : MonoBehaviour
 
             // finding all components from customer
             Customer customer = c.GetComponent<Customer>();
-            orderPanelHandler = customer.GetComponent<OrderPanelHandler>();
+            orderPanelHandler = GameObject.Find("EventSystem").GetComponent<OrderPanelHandler>();
 
             // finding button, childing it to the main canvas
-            orderFormButton = customer.transform.GetChild(0).GetComponent<Button>();
-            orderFormButton.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
+            orderFormButton = Instantiate(orderButtonClone, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Button>();
             orderFormButton.transform.SetSiblingIndex(2);
+            orderFormButton.transform.localPosition = new Vector3(110, -115, 0);
 
             // adding onClick listener to customer's order button
             orderFormButton.onClick.AddListener(() => orderPanelHandler.OpenClosePanel());
@@ -76,7 +77,8 @@ public class CustomerSpawner : MonoBehaviour
         // destroy customer and their forms
         Destroy(c.gameObject);
         Destroy(orderFormButton.gameObject);
-        Destroy(GameObject.Find("button_specialform").gameObject);
+        if(c.GetComponent<Customer>().hasSpecialForm)
+            Destroy(GameObject.Find("Special Form Button").gameObject);
 
         // close panel if it's open
         if (orderPanelHandler.panelActive)

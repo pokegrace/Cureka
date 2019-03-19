@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class OrderPanelHandler : MonoBehaviour
 {
-    [SerializeField] private Text textGoldValue;
-
     public bool panelActive = false;
     private Customer customer;
 

@@ -7,6 +7,7 @@ public class SpecialFormsHandler : MonoBehaviour
 {
     [SerializeField] private GameObject prescPanel;
     [SerializeField] private GameObject permitPanel;
+    [SerializeField] private GameObject specialFormButtonClone;
     [SerializeField] private Button askPrescButton;
 
     public bool panelOpen;
@@ -29,13 +30,11 @@ public class SpecialFormsHandler : MonoBehaviour
         // if the customer's order is a prescription and they have special form
         if (customer.CustomerOrder.OrderType.Equals("Prescription") && customer.hasSpecialForm)
         {
-            // get customer's special order form button and set it as a child to canvas
-            if(customer.transform.childCount > 0)
-            {
-                specialFormButton = customer.transform.GetChild(0).GetComponent<Button>();
-                specialFormButton.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
-                specialFormButton.transform.SetSiblingIndex(3);
-            }
+            // instantiate special form button and set it as a child to canvase
+            specialFormButton = Instantiate(specialFormButtonClone, GameObject.FindGameObjectWithTag("Canvas").transform).GetComponent<Button>();
+            specialFormButton.name = "Special Form Button";
+            specialFormButton.transform.SetSiblingIndex(3);
+            specialFormButton.transform.localPosition = new Vector3(210, -195, 0);
 
             // deciding if the prescription will be correct or not
             int r = (int)Random.Range(0, 2);
