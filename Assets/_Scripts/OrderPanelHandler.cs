@@ -52,6 +52,7 @@ public class OrderPanelHandler : MonoBehaviour
             orderPanel.SetActive(false);
             panelActive = false;
         }
+        SoundManager.instance.PlaySingle(SoundManager.openSound);
     }
 
     // adding text to all fields

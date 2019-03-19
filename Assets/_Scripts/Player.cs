@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
         if (denyCorrect)
         {
             customerSpawner.PlayAnimation("Angry");
+            SoundManager.instance.PlaySingle(SoundManager.angrySound);
         }
         // if player wasn't supposed to deny customer but did
         else
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour
             ++mistakeAmount;
             // play emote and destroy customer
             customerSpawner.PlayAnimation("Wrong");
+            SoundManager.instance.PlaySingle(SoundManager.incorrectSound);
         }
     }
 }

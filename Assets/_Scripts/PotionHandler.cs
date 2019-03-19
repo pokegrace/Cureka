@@ -66,6 +66,7 @@ public class PotionHandler : MonoBehaviour
             otcPanel.SetActive(false);
             otcOpen = false;
         }
+        SoundManager.instance.PlaySingle(SoundManager.buttonPushSound);
     }
 
     public void OpenClosePresc()
@@ -80,6 +81,7 @@ public class PotionHandler : MonoBehaviour
             prescPanel.SetActive(false);
             prescOpen = false;
         }
+        SoundManager.instance.PlaySingle(SoundManager.buttonPushSound);
     }
 
     private void CheckOTCPotion(string potionName)
@@ -93,6 +95,7 @@ public class PotionHandler : MonoBehaviour
             // add potion amount to player's gold amount and destroy customer
             player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
             customerSpawner.PlayAnimation("Correct");
+            SoundManager.instance.PlaySingle(SoundManager.soldSound);
 
             OpenCloseOTC();
         }
@@ -102,6 +105,7 @@ public class PotionHandler : MonoBehaviour
             player.MistakeAmount += 1;
             OpenCloseOTC();
             customerSpawner.PlayAnimation("Wrong");
+            SoundManager.instance.PlaySingle(SoundManager.incorrectSound);
         }
     }
 
@@ -117,18 +121,21 @@ public class PotionHandler : MonoBehaviour
             {
                 ++player.MistakeAmount;
                 customerSpawner.PlayAnimation("Wrong");
+                SoundManager.instance.PlaySingle(SoundManager.incorrectSound);
             }
             // if special form was incorrect but player gave potion anyway
             else if(customer.hasSpecialForm && specialFormsHandler.orderCorrect == false)
             {
                 ++player.MistakeAmount;
                 customerSpawner.PlayAnimation("Wrong");
+                SoundManager.instance.PlaySingle(SoundManager.incorrectSound);
             }
             else
             {
                 // add potion amount to player's gold amount and destroy customer
                 player.GoldAmount += customer.CustomerOrder.OrderPotion.price;
                 customerSpawner.PlayAnimation("Correct");
+                SoundManager.instance.PlaySingle(SoundManager.soldSound);
             }
             OpenClosePresc();
         }
@@ -137,6 +144,7 @@ public class PotionHandler : MonoBehaviour
             player.MistakeAmount += 1;
             OpenClosePresc();
             customerSpawner.PlayAnimation("Wrong");
+            SoundManager.instance.PlaySingle(SoundManager.incorrectSound);
         }
     }
 }

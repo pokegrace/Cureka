@@ -93,6 +93,7 @@ public class SpecialFormsHandler : MonoBehaviour
             panel.SetActive(false);
             panelOpen = false;
         }
+        SoundManager.instance.PlaySingle(SoundManager.openSound);
     }
 
     // sets the special order text to either correct or incorrect order

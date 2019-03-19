@@ -62,6 +62,7 @@ public class RulesHandler : MonoBehaviour
             rulesPanel.SetActive(false);
             panelOpen = false;
         }
+        SoundManager.instance.PlaySingle(SoundManager.openSound);
     }
 
     private void ClickRightArrow()
