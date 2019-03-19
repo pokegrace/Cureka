@@ -21,6 +21,7 @@ public class PotionHandler : MonoBehaviour
     private Customer customer;
     private CustomerSpawner customerSpawner;
     private SpecialFormsHandler specialFormsHandler;
+    private OrderPanelHandler orderPanelHandler;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class PotionHandler : MonoBehaviour
         player = GameObject.Find("EventSystem").GetComponent<Player>();
         customerSpawner = GameObject.Find("Spawner").GetComponent<CustomerSpawner>();
         specialFormsHandler = GameObject.Find("EventSystem").GetComponent<SpecialFormsHandler>();
+        orderPanelHandler = GameObject.Find("EventSystem").GetComponent<OrderPanelHandler>();
 
         // setting onclick listeners to close panels
         closeOTC = otcPanel.transform.GetChild(0).GetComponent<Button>();
@@ -59,6 +61,12 @@ public class PotionHandler : MonoBehaviour
     {
         if (!otcOpen)
         {
+            // if order / prescription form is open, close them
+            if (GameObject.Find("Order Form"))
+                orderPanelHandler.OpenClosePanel();
+            if (GameObject.Find("Prescription"))
+                specialFormsHandler.OpenClosePanel(GameObject.Find("Prescription"));
+
             otcPanel.SetActive(true);
             otcOpen = true;
         }
@@ -80,6 +88,12 @@ public class PotionHandler : MonoBehaviour
     {
         if (!prescOpen)
         {
+            // if order / prescription form is open, close them
+            if (GameObject.Find("Order Form"))
+                orderPanelHandler.OpenClosePanel();
+            if (GameObject.Find("Prescription"))
+                specialFormsHandler.OpenClosePanel(GameObject.Find("Prescription"));
+
             prescPanel.SetActive(true);
             prescOpen = true;
         }
